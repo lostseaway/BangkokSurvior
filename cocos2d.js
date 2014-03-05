@@ -13,7 +13,9 @@
         //SingleEngineFile:'',
         appFiles:[
             'src/GameLayer.js',
-            'src/MainCharacter.js'    //add your own files in order here
+            'src/MainCharacter.js',
+            'src/Stage1.js',
+            'src/mainCharContorller.js'    //add your own files in order here
         ]
     };
 

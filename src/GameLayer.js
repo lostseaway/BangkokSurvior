@@ -2,19 +2,23 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
- 
-        // this.mainChar  = new mainChar(0,10);
-        // this.mainChar.setPosition(new cc.Point(0 * 40 ,10 * 40));
-        // this.addChild(this.mainChar);
-        // this.mainChar.scheduleUpdate();
 
         this.mainChar = new MainChar();
-        this.mainChar.setPosition(cc.p(100,400));
-        this.addChild(this.mainChar);
-
+        this.Stage1 = new Stage1(this.mainChar);
+        this.contorller = new mainCharController(this.Stage1.WIDTH,this.Stage1.HEIGHT,this.mainChar);
+        this.addChild(this.contorller);
+        this.contorller.scheduleUpdate();
+        this.addChild(this.Stage1);
         this.setKeyboardEnabled( true );
+
  
         return true;
+    },
+    onKeyDown: function(e){
+        this.contorller.onKeyDown(e);
+    },
+    onKeyUp: function(e){
+        this.contorller.onKeyUp(e);
     }
 });
 

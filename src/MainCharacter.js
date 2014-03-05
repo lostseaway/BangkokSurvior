@@ -1,7 +1,7 @@
 var MainChar = cc.Sprite.extend({ 
 	ctor : function(){
 		this._super();
-		this.setAnchorPoint(cc.p(0.5,0.5));
+		this.setAnchorPoint(cc.p(0.5,0));
 		this.standAction  = this.createStandAction();
 		this.runAction(this.standAction);
 	},
