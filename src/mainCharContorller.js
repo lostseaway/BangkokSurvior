@@ -13,10 +13,10 @@ var mainCharController = cc.Node.extend({
 	},
 	update: function(dt){
 		// console.log("eie");
-		if(this.keyL) this.xV = -3;
-		if(this.keyR) this.xV = 3;
-		if(this.keyU) this.yV = 3;
-		if(this.keyD) this.yV = -3;
+		if(this.keyL) this.xV = -4;
+		if(this.keyR) this.xV = 4;
+		if(this.keyU) this.yV = 4;
+		if(this.keyD) this.yV = -4;
 		this.move();
 	},
 	onKeyDown: function(e){
@@ -65,7 +65,7 @@ var mainCharController = cc.Node.extend({
 	},
 	move: function(){
 		var pos = this.mainChar.getPosition();
-		if(pos.y+this.yV <= this.HEIGHT){
+		if(pos.y+this.yV <= this.HEIGHT && pos.y+this.yV >=0){
 			this.mainChar.setPosition(pos.x+this.xV,pos.y+this.yV);
 		}
 	}

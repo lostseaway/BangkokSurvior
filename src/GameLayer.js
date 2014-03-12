@@ -4,7 +4,8 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
 
         this.mainChar = new MainChar();
-        this.Stage1 = new Stage1(this.mainChar);
+        this.factory = new EnemyFactory(this.mainChar);
+        this.Stage1 = new Stage1(this.mainChar,this.factory);
         this.contorller = new mainCharController(this.Stage1.WIDTH,this.Stage1.HEIGHT,this.mainChar);
         this.addChild(this.contorller);
         this.contorller.scheduleUpdate();

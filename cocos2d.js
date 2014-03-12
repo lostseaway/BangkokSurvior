@@ -4,7 +4,7 @@
         COCOS2D_DEBUG: 2, //0 to turn debug off, 1 for basic debug, and 2 for full debug
         box2d: false,
         chipmunk: false,
-        showFPS: true,
+        showFPS: false,
         loadExtension: false,
         frameRate: 60,
         renderMode: 1,       //Choose of RenderMode: 0(default), 1(Canvas only), 2(WebGL only)
@@ -15,7 +15,9 @@
             'src/GameLayer.js',
             'src/MainCharacter.js',
             'src/Stage1.js',
-            'src/mainCharContorller.js'    //add your own files in order here
+            'src/mainCharContorller.js',
+            'src/enemy.js',
+            'src/EnemyFactory.js'    //add your own files in order here
         ]
     };
 
