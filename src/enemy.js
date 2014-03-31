@@ -11,8 +11,26 @@ var Enemy = cc.Sprite.extend({
 		this.vY = 0.5;
 		this.state = 0;
 		this.setScale(1.5);
+		this.radius = 100;
 	},
 	update: function( dt ){
+		var mainPosition = this.mainChar.getPosition();
+		var position = this.getPosition();
+		if(this.inRange())this.move();
+		else{
+			this.switchState(0);
+		}
+
+
+	},
+	inRange: function(){
+		var mainPosition = this.mainChar.getPosition();
+		var position = this.getPosition();
+
+		square_dist = Math.pow((position.x - mainPosition.x),2) + Math.pow((position.y - mainPosition.y),2)
+    	return square_dist <= Math.pow(this.radius,2); 
+	},
+	move: function(){
 		var position = this.getPosition();
 		var mainPosition = this.mainChar.getPosition();
 		if(mainPosition.x <= position.x) this.switchFac(0);
@@ -39,7 +57,6 @@ var Enemy = cc.Sprite.extend({
 				
 			}
 		}
-
 	},
 	switchFac: function( n ){
 		//fac to left side
