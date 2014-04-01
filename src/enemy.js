@@ -11,14 +11,26 @@ var Enemy = cc.Sprite.extend({
 		this.vY = 0.5;
 		this.state = 0;
 		this.setScale(1.5);
-		this.radius = 100;
+		this.radius = 150;
+
 	},
 	update: function( dt ){
 		var mainPosition = this.mainChar.getPosition();
 		var position = this.getPosition();
-		if(this.inRange())this.move();
+		if(this.inRange()){
+			if(this.healthBar != null && !this.healthBar.started){
+				this.healthBar.started = true;
+				this.addChild( this.healthBar );
+			}
+			this.move();
+		}
 		else{
 			this.switchState(0);
+		}
+		if(this.healthBar == null && this.getContentSize().width!=0){
+			console.log(this.getContentSize().width);
+			this.healthBar = new EnemyHealthBar(this.getContentSize().width);
+			this.setHealthBar(this.healthBar);
 		}
 
 
@@ -106,5 +118,12 @@ var Enemy = cc.Sprite.extend({
     		}
     		this.state = n;
     	}
-    }
+    },
+    setHealthBar: function( healthBar ) {
+		this.healthBar = healthBar;
+		this.healthBar.setScale( 0.3 );
+		this.healthBar.setPosition( -4, -10 );
+		// this.healthBar.setPosition( -4, 45 );
+		// this.addChild( this.healthBar );
+	}
 });

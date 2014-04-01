@@ -17,7 +17,8 @@
             'src/Stage1.js',
             'src/mainCharContorller.js',
             'src/enemy.js',
-            'src/EnemyFactory.js'    //add your own files in order here
+            'src/EnemyFactory.js',
+            'src/EnemyHealthBar.js'    //add your own files in order here
         ]
     };
 
