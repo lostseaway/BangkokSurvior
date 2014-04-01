@@ -6,7 +6,7 @@ var Stage1 = cc.Node.extend({
 		this.mainChar = mainChar;
 		this.fatory = fatory;
 		this.fatory.hScene = this.HEIGHT;
-		this.spawnEnemy(1);
+		this.spawnEnemy(5);
 
 		this.mainChar.setPosition(cc.p(100,100));
 		this.addChild(this.mainChar);
@@ -19,5 +19,6 @@ var Stage1 = cc.Node.extend({
 			enemy[i].scheduleUpdate();
 			this.addChild(enemy[i]);
 		}
+		this.mainChar.enemys = enemy;
 	}
 });

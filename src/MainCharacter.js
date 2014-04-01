@@ -4,6 +4,8 @@ var MainChar = cc.Sprite.extend({
 		this.setAnchorPoint(cc.p(0.5,0));
 		this.standAction  = this.createStandAction();
 		this.runAction(this.standAction);
+		this.isAttack = false;
+		this.enemys = null;
 	},
 	createStandAction : function(){
 		var animation = new cc.Animation.create();

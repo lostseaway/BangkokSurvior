@@ -4,7 +4,7 @@ var EnemyHealthBar = cc.Node.extend({
 		// console.log(w);
 		this._super();
 
-		this.DEFAULT_SCALE_X = 4;
+		this.DEFAULT_SCALE_X = w/40.0 + 2;
 
 		this.hpBar = cc.Sprite.create( 'img/hp_green.png' );
 
@@ -25,7 +25,7 @@ var EnemyHealthBar = cc.Node.extend({
 	},
 
 	setHP: function( percent ) {
-		console.log( this.DEFAULT_SCALE_X * percent / 100 )
-		this.hpBar.setScaleX( this.DEFAULT_SCALE_X * percent / 100 );
+		console.log( this.DEFAULT_SCALE_X * (percent / 100) )
+		this.hpBar.setScaleX( this.DEFAULT_SCALE_X * (percent / 100) );
 	}
 });

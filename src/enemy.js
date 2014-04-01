@@ -4,6 +4,7 @@ var Enemy = cc.Sprite.extend({
 		this.mainChar = mainChar;
 		this.sX = 0;
 		this.sY = 0;
+		this.HP = 100;
 		this.standAction  = this.createStandAction();
 		this.walkAction = this.createWalkAction();
 		this.runAction(this.standAction);
@@ -32,7 +33,6 @@ var Enemy = cc.Sprite.extend({
 			this.healthBar = new EnemyHealthBar(this.getContentSize().width);
 			this.setHealthBar(this.healthBar);
 		}
-
 
 	},
 	inRange: function(){
@@ -125,5 +125,15 @@ var Enemy = cc.Sprite.extend({
 		this.healthBar.setPosition( -4, -10 );
 		// this.healthBar.setPosition( -4, 45 );
 		// this.addChild( this.healthBar );
+	},
+	isAttack: function(){
+		var enemyBox = this.getBoundingBoxToWorld();
+		var mainBox = this.mainChar.getBoundingBoxToWorld();
+		if(cc.rectOverlapsRect(enemyBox,mainBox)){
+			console.log("HIT!!");
+			this.HP-=10;
+			this.healthBar.setHP(this.HP);
+			if(this.HP <= 0)this.removeFromParent(true);
+		}
 	}
 });

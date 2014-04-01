@@ -10,6 +10,8 @@ var mainCharController = cc.Node.extend({
 		this.keyR = false;
 		this.keyU = false;
 		this.keyD = false;
+		this.keyA = false;
+
 	},
 	update: function(dt){
 		// console.log("eie");
@@ -23,11 +25,13 @@ var mainCharController = cc.Node.extend({
 		// console.log("Down : "+e);
 		if(e == 37){
 			if(!this.keyR) this.keyL = true;
+			this.mainChar.setFlippedX(true);
 			// console.log(this.keyL);
 		}
 		if(e == 39){
 			if(!this.keyL) this.keyR = true;
-			this.move();
+			this.mainChar.setFlippedX(false);
+			// this.move();
 			// console.log(this.keyR);
 		}
 		if(e == 38){
@@ -37,6 +41,12 @@ var mainCharController = cc.Node.extend({
 		if(e == 40){
 			if(!this.keyU) this.keyD = true;
 			// console.log(this.keyD);
+		}
+		if(e== 32){
+			if(!this.keyA){
+				this.keyA = true;
+				this.Attack();
+			}
 		}
 	},
 	onKeyUp: function(e){
@@ -61,6 +71,9 @@ var mainCharController = cc.Node.extend({
 			this.yV = 0;
 			// console.log(this.keyD);2
 		}
+		if(e == 32){
+			this.keyA = false;
+		}
 
 	},
 	move: function(){
@@ -68,5 +81,13 @@ var mainCharController = cc.Node.extend({
 		if(pos.y+this.yV <= this.HEIGHT && pos.y+this.yV >=0){
 			this.mainChar.setPosition(pos.x+this.xV,pos.y+this.yV);
 		}
+	},
+	Attack: function(){
+		this.mainChar.isAttack = true;
+		console.log("Attack!!");
+		for(var i = 0;i<this.mainChar.enemys.length;i++){
+			this.mainChar.enemys[i].isAttack();
+		}
+		this.mainChar.isAttack = false;
 	}
 })
