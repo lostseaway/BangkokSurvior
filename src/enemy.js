@@ -13,6 +13,8 @@ var Enemy = cc.Sprite.extend({
 		this.state = 0;
 		this.setScale(1.5);
 		this.radius = 150;
+		this.attR = 50;
+		this.damage = 1;
 
 	},
 	update: function( dt ){
@@ -33,6 +35,9 @@ var Enemy = cc.Sprite.extend({
 			this.healthBar = new EnemyHealthBar(this.getContentSize().width);
 			this.setHealthBar(this.healthBar);
 		}
+		if(this.state == 2){
+			this.Attack();
+		}
 
 	},
 	inRange: function(){
@@ -48,8 +53,9 @@ var Enemy = cc.Sprite.extend({
 		if(mainPosition.x <= position.x) this.switchFac(0);
 		else this.switchFac(1);
 
-		if(mainPosition.x == position.x && mainPosition.y == position.y){
-			this.switchState(0);
+		if((mainPosition.x + this.attR >= position.x && mainPosition.x - this.attR <= position.x) && mainPosition.y == position.y){
+			this.switchState(2);
+
 		}
 		else{
 			this.switchState(1);
@@ -116,6 +122,10 @@ var Enemy = cc.Sprite.extend({
     			this.stopAction(this.walkAction);
     			this.runAction(this.standAction);
     		}
+    		else if(n==2){
+    			this.stopAction(this.walkAction);
+    			this.runAction(this.standAction);
+    		}
     		this.state = n;
     	}
     },
@@ -123,17 +133,22 @@ var Enemy = cc.Sprite.extend({
 		this.healthBar = healthBar;
 		this.healthBar.setScale( 0.3 );
 		this.healthBar.setPosition( -4, -10 );
-		// this.healthBar.setPosition( -4, 45 );
-		// this.addChild( this.healthBar );
 	},
-	isAttack: function(){
+	isAttacked: function(){
 		var enemyBox = this.getBoundingBoxToWorld();
 		var mainBox = this.mainChar.getBoundingBoxToWorld();
 		if(cc.rectOverlapsRect(enemyBox,mainBox)){
-			console.log("HIT!!");
-			this.HP-=10;
-			this.healthBar.setHP(this.HP);
-			if(this.HP <= 0)this.removeFromParent(true);
+			// console.log("HIT!!");
+			console.log(this.mainChar.facing);
+			console.log(enemyBox.x +" "+mainBox.x);
+			if((enemyBox.x >= mainBox.x && this.mainChar.facing == 1)||(enemyBox.x <= mainBox.x && this.mainChar.facing == 0 )){
+				this.HP-=10;
+				this.healthBar.setHP(this.HP);
+				if(this.HP <= 0)this.removeFromParent(true);
+			}
 		}
+	},
+	Attack: function(){
+		this.mainChar.Attacked(this.damage);
 	}
 });

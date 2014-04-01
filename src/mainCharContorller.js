@@ -26,11 +26,13 @@ var mainCharController = cc.Node.extend({
 		if(e == 37){
 			if(!this.keyR) this.keyL = true;
 			this.mainChar.setFlippedX(true);
+			this.mainChar.facing = 0;
 			// console.log(this.keyL);
 		}
 		if(e == 39){
 			if(!this.keyL) this.keyR = true;
 			this.mainChar.setFlippedX(false);
+			this.mainChar.facing = 1;
 			// this.move();
 			// console.log(this.keyR);
 		}
@@ -86,7 +88,7 @@ var mainCharController = cc.Node.extend({
 		this.mainChar.isAttack = true;
 		console.log("Attack!!");
 		for(var i = 0;i<this.mainChar.enemys.length;i++){
-			this.mainChar.enemys[i].isAttack();
+			this.mainChar.enemys[i].isAttacked();
 		}
 		this.mainChar.isAttack = false;
 	}

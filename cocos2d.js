@@ -18,7 +18,8 @@
             'src/mainCharContorller.js',
             'src/enemy.js',
             'src/EnemyFactory.js',
-            'src/EnemyHealthBar.js'    //add your own files in order here
+            'src/EnemyHealthBar.js',
+            'src/PlayerHealthBar.js'    //add your own files in order here
         ]
     };
 

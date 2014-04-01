@@ -10,6 +10,11 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.contorller);
         this.contorller.scheduleUpdate();
         this.addChild(this.Stage1);
+        this.playerhealth = new PlayerHealthBar();
+        this.playerhealth.setPosition(cc.p(30,550));
+        this.addChild(this.playerhealth);
+        this.mainChar.setHealthBar(this.playerhealth);
+
         this.setKeyboardEnabled( true );
 
  
