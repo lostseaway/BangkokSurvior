@@ -3,6 +3,10 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
+        this.bg = new BackgroundLayer();
+        this.bg.setPosition(cc.p(0,0));
+        this.addChild(this.bg);
+
         this.mainChar = new MainChar();
         this.factory = new EnemyFactory(this.mainChar);
         this.Stage1 = new Stage1(this.mainChar,this.factory);
