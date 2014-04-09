@@ -36,7 +36,7 @@ var Enemy = cc.Sprite.extend({
 			this.setHealthBar(this.healthBar);
 		}
 		if(this.state == 2){
-			this.Attack();
+			this.attack();
 		}
 
 	},
@@ -148,7 +148,7 @@ var Enemy = cc.Sprite.extend({
 			}
 		}
 	},
-	Attack: function(){
-		this.mainChar.Attacked(this.damage);
+	attack: function(){
+		this.mainChar.attacked(this.damage);
 	}
 });

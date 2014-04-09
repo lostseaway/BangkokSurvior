@@ -3,17 +3,15 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
 
-        this.bg = new BackgroundLayer();
-        this.bg.setPosition(cc.p(0,0));
-        this.addChild(this.bg);
-
         this.mainChar = new MainChar();
         this.factory = new EnemyFactory(this.mainChar);
         this.Stage1 = new Stage1(this.mainChar,this.factory);
+        this.Stage1.scheduleUpdate();
+        this.addChild(this.Stage1);
         this.contorller = new mainCharController(this.Stage1.WIDTH,this.Stage1.HEIGHT,this.mainChar);
         this.addChild(this.contorller);
         this.contorller.scheduleUpdate();
-        this.addChild(this.Stage1);
+       
         this.playerhealth = new PlayerHealthBar();
         this.playerhealth.setPosition(cc.p(30,550));
         this.addChild(this.playerhealth);
