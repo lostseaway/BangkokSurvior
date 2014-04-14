@@ -25,7 +25,7 @@ var PlayerHealthBar = cc.Node.extend({
 	},
 
 	setHP: function( percent ) {
-		console.log( this.DEFAULT_SCALE_X * (percent / 100) )
+		// console.log( this.DEFAULT_SCALE_X * (percent / 100) )
 		this.hpBar.setScaleX( this.DEFAULT_SCALE_X * (percent / 100) );
 	}
 });

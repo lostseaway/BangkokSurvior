@@ -6,7 +6,8 @@ var Stage1 = cc.Node.extend({
 		this.mainChar = mainChar;
 		this.fatory = fatory;
 		this.fatory.hScene = this.HEIGHT;
-		this.enemy = null;
+		this.enemy = [];
+		this.vStage = 4
 
 
 
@@ -20,7 +21,15 @@ var Stage1 = cc.Node.extend({
 		this.spawnEnemy(5);
 	},
 	update : function(dt){
-		if(this.enemy.length == 0)console.log("all enemy down!");
+		var mainPos = this.mainChar.getBoundingBoxToWorld();
+		for(var i = 0;i<this.enemy.length;i++){
+			if(!this.enemy[i].isAlive)this.enemy.splice(i,1);
+		}
+		if(this.enemy.length == 0){
+			if(mainPos.x>=700)this.moveBG(-this.vStage);
+			if(mainPos.x<=50)this.moveBG(this.vStage);
+		}
+
 	},
 	spawnEnemy: function(number){
 		this.enemy = this.fatory.getEnemy(number);
@@ -31,5 +40,11 @@ var Stage1 = cc.Node.extend({
 			this.addChild(this.enemy[i]);
 		}
 		this.mainChar.enemys = this.enemy;
+	},
+	moveBG : function(v){
+		var stagePos = this.getPosition();
+		if(v>=0 && stagePos.x==0)return
+		this.setPosition(cc.p(stagePos.x+v,stagePos.y));
+
 	}
 });

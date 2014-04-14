@@ -5,11 +5,15 @@ var BackgroundLayer = cc.Node.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
 
 		this.sky = cc.Sprite.create('img/sky.jpg');
-        this.sky.setPosition(cc.p(100,500));
+        this.sky.setAnchorPoint(cc.p(0,0));
+        this.sky.setPosition(cc.p(0,0));
+        
         this.addChild(this.sky);
 
         this.floor = cc.Sprite.create( 'img/stage1_floor.png' );
-        this.floor.setPosition(cc.p(400,200));
+        this.floor.setAnchorPoint(cc.p(0,0));
+        this.floor.setPosition(cc.p(0,0));
+
         this.addChild(this.floor);
 
 

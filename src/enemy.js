@@ -15,6 +15,7 @@ var Enemy = cc.Sprite.extend({
 		this.radius = 150;
 		this.attR = 50;
 		this.damage = 1;
+		this.isAlive = true
 
 	},
 	update: function( dt ){
@@ -31,7 +32,7 @@ var Enemy = cc.Sprite.extend({
 			this.switchState(0);
 		}
 		if(this.healthBar == null && this.getContentSize().width!=0){
-			console.log(this.getContentSize().width);
+			// console.log(this.getContentSize().width);
 			this.healthBar = new EnemyHealthBar(this.getContentSize().width);
 			this.setHealthBar(this.healthBar);
 		}
@@ -139,12 +140,15 @@ var Enemy = cc.Sprite.extend({
 		var mainBox = this.mainChar.getBoundingBoxToWorld();
 		if(cc.rectOverlapsRect(enemyBox,mainBox)){
 			// console.log("HIT!!");
-			console.log(this.mainChar.facing);
-			console.log(enemyBox.x +" "+mainBox.x);
+			// console.log(this.mainChar.facing);
+			// console.log(enemyBox.x +" "+mainBox.x);
 			if((enemyBox.x >= mainBox.x && this.mainChar.facing == 1)||(enemyBox.x <= mainBox.x && this.mainChar.facing == 0 )){
 				this.HP-=10;
 				this.healthBar.setHP(this.HP);
-				if(this.HP <= 0)this.removeFromParent(true);
+				if(this.HP <= 0){
+					this.removeFromParent(true);
+					this.isAlive = false;
+				}
 			}
 		}
 	},
