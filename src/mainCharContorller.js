@@ -15,10 +15,13 @@ var mainCharController = cc.Node.extend({
 	},
 	update: function(dt){
 		// console.log("eie");
+		var mainPos = this.mainChar.getBoundingBoxToWorld();
 		if(this.keyL) this.xV = -4;
 		if(this.keyR) this.xV = 4;
 		if(this.keyU) this.yV = 4;
 		if(this.keyD) this.yV = -4;
+		if(this.xV <0 && mainPos.x <=5)return
+		if(this.xV >0 && mainPos.x >=720)return
 		this.move();
 	},
 	onKeyDown: function(e){

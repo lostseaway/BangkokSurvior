@@ -31,7 +31,7 @@ var MainChar = cc.Sprite.extend({
 
 	attacked : function(damage){
 		this.HP -= damage;
-		console.log(this.HP/this.maxHP);
+		// console.log(this.HP/this.maxHP);
 		this.healthBar.setHP((this.HP/this.maxHP)*100);
 	}
 });
